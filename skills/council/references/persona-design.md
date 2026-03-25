@@ -26,7 +26,7 @@ The contrarian should be designed to challenge the specific assumptions most lik
 
 ## 3. ONE Specific Actionable Suggestion Per Persona
 
-**Source:** BMO-GAM Financial Report Design Council — the breakthrough insight that transformed council quality.
+**Source:** Asset Management RAG Pipeline Financial Report Design Council — the breakthrough insight that transformed council quality.
 
 Each persona delivers exactly ONE specific, actionable suggestion through their evaluation lens. Not a rambling analysis. Not a list of observations. One concrete idea that could be implemented without asking clarifying questions.
 

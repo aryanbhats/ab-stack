@@ -4,11 +4,11 @@ Real council sessions that demonstrate the pattern in action. These show what go
 
 ---
 
-## Example 1: BMO-GAM Financial Report Design Council
+## Example 1: Asset Management RAG Pipeline Financial Report Design Council
 
 **Preset:** content (with finance-domain personas)
 **Judge mode:** Assistant-as-Judge
-**Question:** "What gives this report its IT factor? What single design element would most elevate the BMO GAM Concentrated Equity Fund annual report?"
+**Question:** "What gives this report its IT factor? What single design element would most elevate the Concentrated Equity Fund annual report?"
 
 ### Personas (5 named professionals)
 
@@ -22,7 +22,7 @@ Real council sessions that demonstrate the pattern in action. These show what go
    - Priorities: Scanability, data density, progressive disclosure
    - Style: Direct, UX-focused
 
-3. **James Whitfield** — Managing Director, BMO Capital Markets
+3. **James Whitfield** — Managing Director, Capital Markets
    - Lens: Client-facing impact and competitive positioning
    - Priorities: Differentiation from competitor reports, client retention
    - Style: Commercial, results-oriented
@@ -42,7 +42,7 @@ Real council sessions that demonstrate the pattern in action. These show what go
 - **Marcus:** Add a "Regulatory Context" sidebar that maps each claim to its source — builds institutional trust.
 - **Priya:** Add implication highlight boxes below key data points — "This means: [plain-English takeaway]" — bridges the gap between data and decision.
 - **James:** Add a verdict box at the top of each section with a clear BUY/HOLD/SELL-equivalent signal — clients want the bottom line first.
-- **Sarah:** Add a 4px accent stripe in BMO Blue (#0055A4) to the left edge of each recommendation box — creates visual hierarchy and brand identity without adding information density.
+- **Sarah:** Add a 4px accent stripe in brand blue (#0055A4) to the left edge of each recommendation box — creates visual hierarchy and brand identity without adding information density.
 - **David:** Add key metric callouts in the margin — the 3 numbers that matter most, with sparkline context — readers should get the story from a 5-second scan.
 
 ### Judge Synthesis

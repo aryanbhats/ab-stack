@@ -252,7 +252,7 @@ More skills are in development. ab-stack is a growing collection — council is 
 
 ## Origin
 
-Built from analysis of 30+ repos, 15+ academic papers, and real council sessions. The ONE-IDEA rule came from a BMO-GAM council where five named professionals (Goldman VP, Bloomberg designer, Pentagram creative director, Two Sigma quant, BMO MD) each gave one concrete design suggestion. The simplest one won.
+Built from analysis of 30+ repos, 15+ academic papers, and real council sessions. The ONE-IDEA rule came from an Asset Management RAG Pipeline council where five named professionals (Goldman VP, Bloomberg designer, Pentagram creative director, Two Sigma quant, portfolio manager) each gave one concrete design suggestion. The simplest one won.
 
 ## License
 
