@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILLS_DIR="$SCRIPT_DIR/skills"
+
+echo "ab-stack — installing skills"
+echo ""
+
+# Detect target directory
+if [ -n "$1" ] && [ "$1" = "--local" ]; then
+    # Project-local install
+    TARGET=".claude/skills"
+    mkdir -p "$TARGET"
+    echo "Installing locally to $TARGET/"
+elif [ -d "$HOME/.agents/skills" ] || command -v claude >/dev/null 2>&1; then
+    TARGET="$HOME/.agents/skills"
+    echo "Installing to $TARGET/"
+elif command -v codex >/dev/null 2>&1; then
+    TARGET="$HOME/.codex/skills"
+    echo "Installing to $TARGET/"
+else
+    TARGET="$HOME/.agents/skills"
+    echo "Installing to $TARGET/"
+fi
+
+mkdir -p "$TARGET"
+
+# Install each skill
+installed=0
+for skill_dir in "$SKILLS_DIR"/*/; do
+    skill_name=$(basename "$skill_dir")
+    target_path="$TARGET/$skill_name"
+
+    if [ -L "$target_path" ]; then
+        current=$(readlink "$target_path")
+        if [ "$current" = "$skill_dir" ] || [ "$current" = "${skill_dir%/}" ]; then
+            echo "  $skill_name: already linked"
+        else
+            rm "$target_path"
+            ln -s "$skill_dir" "$target_path"
+            echo "  $skill_name: relinked (was pointing to $current)"
+        fi
+    elif [ -d "$target_path" ]; then
+        mv "$target_path" "${target_path}.bak"
+        echo "  $skill_name: backed up existing → ${skill_name}.bak"
+        ln -s "$skill_dir" "$target_path"
+        echo "  $skill_name: linked"
+    else
+        ln -s "$skill_dir" "$target_path"
+        echo "  $skill_name: linked"
+    fi
+    installed=$((installed + 1))
+done
+
+echo ""
+echo "Installed $installed skill(s)."
+echo ""
+echo "Try it:"
+echo '  /council "Should I quit my job to build a startup?"'
+echo '  /council finance "Should I buy NVDA at current levels?"'
+echo '  /council code     # reviews your recent changes'
+echo '  /council --deep "your complex question"'
