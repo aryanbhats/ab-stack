@@ -10,8 +10,17 @@ description: |
 
 Keeps Todoist in sync with Claude Code sessions. Uses `mcp__todoist__*` MCP tools.
 
-Config at `${CLAUDE_PLUGIN_DATA}/config.json` (written by `/todoist-sync:setup`).
-Session state at `${CLAUDE_PLUGIN_DATA}/sessions/<project>.json`.
+## Step 0: Load config
+
+Before doing anything, read the config file. The path `${CLAUDE_PLUGIN_DATA}` is substituted by Claude Code:
+
+```bash
+cat "${CLAUDE_PLUGIN_DATA}/config.json"
+```
+
+If the file doesn't exist, tell the user to run `/todoist-sync:setup` and stop.
+
+Parse the JSON to find the current repo's project entry. Match `git rev-parse --show-toplevel` against the `repo` field in each project. Extract `section_id`, `section_name`, and `preferences.summary_max_tasks`.
 
 ## On Session Start
 

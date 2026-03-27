@@ -57,8 +57,7 @@ Create any missing ones via `mcp__todoist__add-labels`.
 ### Step 6: Write config
 
 ```bash
-DATA_DIR="${CLAUDE_PLUGIN_DATA:-$HOME/.claude/plugins/data/todoist-sync}"
-mkdir -p "$DATA_DIR/sessions"
+mkdir -p "${CLAUDE_PLUGIN_DATA}/sessions"
 ```
 
 Read existing config (or start fresh), add/update the project entry, write back:
