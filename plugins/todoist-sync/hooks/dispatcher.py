@@ -187,17 +187,15 @@ def main():
 
         active_ids = state.get("active_task_ids", [])
 
+        active_summary = f"Active task IDs: {json.dumps(active_ids)}" if active_ids else "No tasks were tracked this session."
+
         output = {
-            "hookSpecificOutput": {
-                "hookEventName": "Stop",
-                "additionalContext": (
-                    f"[todoist-sync] Session ending for {matched_key} ({section_name}). "
-                    f"Branch: {branch}. "
-                    f"Active task IDs this session: {json.dumps(active_ids)}. "
-                    f"Session file: {session_file}. "
-                    f"Offer to complete active sub-tasks and update task descriptions with what was done this session."
-                ),
-            },
+            "decision": "approve",
+            "systemMessage": (
+                f"[todoist-sync] Session ending for {matched_key} ({section_name}). "
+                f"Branch: {branch}. {active_summary} "
+                f"Session file: {session_file}."
+            ),
         }
         print(json.dumps(output))
 
