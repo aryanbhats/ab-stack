@@ -1,0 +1,16 @@
+{
+  "name": "ab-stack",
+  "description": "Aryan's productivity toolkit — skills and plugins for AI coding agents",
+  "owner": {
+    "name": "Aryan Bhatia",
+    "url": "https://github.com/aryanbhats"
+  },
+  "plugins": [
+    {
+      "name": "todoist-sync",
+      "source": "./plugins/todoist-sync",
+      "description": "Automatic Todoist task tracking at session boundaries. Maps git repos to Todoist sections, shows due tasks on session start, offers completion on stop.",
+      "version": "1.0.0"
+    }
+  ]
+}

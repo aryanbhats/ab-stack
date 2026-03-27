@@ -1,0 +1,29 @@
+{
+  "description": "Auto-triggers Todoist sync at session boundaries. Fires on SessionStart to show due tasks, and on Stop to offer task completion.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/dispatcher.sh",
+            "timeout": 5,
+            "statusMessage": "Checking Todoist..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/dispatcher.sh",
+            "timeout": 5,
+            "statusMessage": "Syncing Todoist..."
+          }
+        ]
+      }
+    ]
+  }
+}
