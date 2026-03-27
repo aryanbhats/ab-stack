@@ -15,21 +15,23 @@ Session state at `${CLAUDE_PLUGIN_DATA}/sessions/<project>.json`.
 
 ## On Session Start
 
-The SessionStart hook injects context with: project key, section ID, branch, max tasks, session file path.
+The SessionStart hook injects context with the **pre-resolved** section ID, max tasks, branch, and session file path. All discovery is already done — do NOT call `get-overview`, `search`, `find-projects`, or `find-sections`.
 
-When you receive this context:
+**Exactly one MCP call:**
+```
+mcp__todoist__find-tasks({ sectionId: "<from hook context>", limit: <from hook context> })
+```
 
-1. **Read session state** from the session file path provided
-2. **Fetch tasks** via `mcp__todoist__find-tasks` with the `sectionId` from context
-   - Limit to the `max_tasks` value from context
-   - Include overdue tasks
-3. **Show brief summary:**
-   - Overdue tasks (flag with priority)
+Then from the results:
+
+1. Filter to overdue + due this week
+2. Show brief summary (5-10 lines max):
+   - Overdue tasks (flag these)
    - Due today / this week
    - Total open chunks vs sub-tasks
-4. **If a task description mentions a branch**, note if it matches current branch
+3. If a task description mentions a branch, note if it matches current branch
 
-Keep it concise — 5-10 lines max. The user wants to start working, not read a report.
+**Never** search for the project or section by name. The hook already resolved it.
 
 ## During Session
 
