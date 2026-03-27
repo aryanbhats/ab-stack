@@ -11,6 +11,8 @@
   "keywords": ["todoist", "productivity", "task-tracking", "project-management"],
   "userConfig": {
     "todoist_default_project": {
+      "type": "string",
+      "title": "Default Todoist project",
       "description": "Your default Todoist project name (used if no section mapping exists for the current repo)",
       "sensitive": false
     }
