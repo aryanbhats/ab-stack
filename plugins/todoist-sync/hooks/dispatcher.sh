@@ -73,7 +73,7 @@ with open(sys.argv[5], 'w') as f:
 " "$PROJECT_KEY" "$REPO_ROOT" "$BRANCH" "$SECTION_ID" "$SESSION_FILE"
 
     cat <<EOF
-{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[todoist-sync] Project: $PROJECT_KEY ($SECTION_NAME). Section ID: $SECTION_ID. Branch: $BRANCH. Max tasks: $MAX_TASKS. Session file: $SESSION_FILE. Use mcp__todoist__find-tasks with sectionId=$SECTION_ID to fetch overdue + due-this-week tasks (limit $MAX_TASKS). Show a brief summary of what's due before starting work."}}
+{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"[todoist-sync] MANDATORY: This project ($PROJECT_KEY) is tracked in Todoist section '$SECTION_NAME' (sectionId=$SECTION_ID). You MUST call mcp__todoist__find-tasks with sectionId='$SECTION_ID' and limit=$MAX_TASKS to show tasks for THIS project only. Do NOT use a global filter. Branch: $BRANCH. Session file: $SESSION_FILE."}}
 EOF
     ;;
 
