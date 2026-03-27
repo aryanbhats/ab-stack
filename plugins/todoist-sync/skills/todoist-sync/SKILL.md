@@ -39,19 +39,24 @@ Then from the results:
 When a piece of work is done (code written, tests pass, PR merged):
 1. Identify which Todoist sub-tasks were addressed
 2. Complete them via `mcp__todoist__complete-tasks`
-3. **Update session state** — add completed task IDs to `active_task_ids` in the session file:
+3. **Update session state** — add completed task IDs to `active_task_ids` in the session file provided by the hook context. Use atomic write to prevent corruption:
    ```bash
    python3 -c "
-   import json, sys
-   with open(sys.argv[1]) as f:
+   import json, sys, os, tempfile
+   path = sys.argv[1]
+   new_ids = sys.argv[2:]
+   with open(path) as f:
        state = json.load(f)
-   state['active_task_ids'].extend(sys.argv[2:])
-   # Deduplicate
-   state['active_task_ids'] = list(set(state['active_task_ids']))
-   with open(sys.argv[1], 'w') as f:
+   state['active_task_ids'] = list(set(state.get('active_task_ids', []) + new_ids))
+   fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path), suffix='.tmp')
+   with os.fdopen(fd, 'w') as f:
        json.dump(state, f, indent=2)
-   " "${CLAUDE_PLUGIN_DATA}/sessions/PROJECT_KEY.json" "TASK_ID_1" "TASK_ID_2"
+       f.flush()
+       os.fsync(f.fileno())
+   os.replace(tmp, path)
+   " "SESSION_FILE_FROM_HOOK_CONTEXT" "TASK_ID_1" "TASK_ID_2"
    ```
+   Replace `SESSION_FILE_FROM_HOOK_CONTEXT` with the actual path from the SessionStart hook context.
 4. If all sub-tasks of a parent chunk are done, ask if the chunk should be completed too
 
 ### Updating task descriptions

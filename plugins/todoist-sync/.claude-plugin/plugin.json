@@ -1,20 +1,12 @@
 {
   "name": "todoist-sync",
   "description": "Automatic Todoist task tracking at session boundaries. Maps git repos to Todoist sections, shows due tasks on session start, offers completion on stop.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Aryan Bhatia",
     "url": "https://github.com/aryanbhats"
   },
   "repository": "https://github.com/aryanbhats/ab-stack",
   "license": "MIT",
-  "keywords": ["todoist", "productivity", "task-tracking", "project-management"],
-  "userConfig": {
-    "todoist_default_project": {
-      "type": "string",
-      "title": "Default Todoist project",
-      "description": "Your default Todoist project name (used if no section mapping exists for the current repo)",
-      "sensitive": false
-    }
-  }
+  "keywords": ["todoist", "productivity", "task-tracking", "project-management"]
 }

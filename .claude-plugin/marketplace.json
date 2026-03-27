@@ -10,7 +10,7 @@
       "name": "todoist-sync",
       "source": "./plugins/todoist-sync",
       "description": "Automatic Todoist task tracking at session boundaries. Maps git repos to Todoist sections, shows due tasks on session start, offers completion on stop.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }
