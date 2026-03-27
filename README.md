@@ -1,8 +1,15 @@
 # ab-stack
 
-Skills for AI coding agents. Start with `/council`.
+A productivity toolkit for AI coding agents -- skills and plugins.
 
 Instead of asking one AI for advice, convene a **board of directors**, **investment committee**, **code review panel**, or **research council** — each member genuinely independent, each bringing a distinct evaluation lens, each forced to give **one specific actionable suggestion**. Then a judge synthesizes the decision with all arguments anonymized.
+
+### What's Inside
+
+| Component | Type | What it does |
+|-----------|------|-------------|
+| [`/council`](#council--multi-persona-deliberation) | Skill | Multi-persona deliberation with anonymized judging |
+| [`todoist-sync`](#todoist-sync-v110) | Plugin | Automatic Todoist task tracking at session boundaries |
 
 ## `/council` — Multi-Persona Deliberation
 
@@ -226,7 +233,31 @@ No changes to SKILL.md needed.
 /council --personas="gallery/finance/value-investor.md,gallery/code/security.md"
 ```
 
+## Plugins
+
+Plugins extend Claude Code with hooks and skills that activate automatically. Install via the Claude plugin system, separate from the `./setup` script.
+
+### todoist-sync (v1.1.0)
+
+Automatic Todoist task tracking for Claude Code sessions. Maps git repos to Todoist sections, shows due tasks on session start, offers to complete sub-tasks on session stop, and creates task chunks from plans.
+
+**Prerequisites:** [Todoist MCP](https://github.com/anthropics/claude-code) connected via `/mcp`
+
+**Install:**
+```bash
+claude plugin install todoist-sync@ab-stack
+```
+
+**Setup (per project):**
+```
+/todoist-sync:setup
+```
+
+Full docs: [`plugins/todoist-sync/README.md`](plugins/todoist-sync/README.md)
+
 ## Install
+
+The setup script installs **skills** (symlinks to `~/.agents/skills/`). For plugins, see [Plugins](#plugins).
 
 **Option 1: Clone + setup**
 ```bash
@@ -245,10 +276,6 @@ cd ab-stack && ./setup --local
 git clone https://github.com/aryanbhats/ab-stack.git ~/.agents/skills/ab-stack
 ln -s ~/.agents/skills/ab-stack/skills/council ~/.agents/skills/council
 ```
-
-## Coming Soon
-
-More skills are in development. ab-stack is a growing collection — council is the first.
 
 ## Origin
 
